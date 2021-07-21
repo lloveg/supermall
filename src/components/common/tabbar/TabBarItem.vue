@@ -26,9 +26,10 @@
       isActive() {
         // /home -> item1(/home) = true
         // /home -> item1(/category) = false
-        // /home -> item1(/cart) = true
-        // /home -> item1(/profile) = true
-        return this.$route.path.indexOf(this.path) !== -1
+        // /home -> item1(/cart) = false
+        // /home -> item1(/profile) = false
+        // indexOf方法：是在活跃路由$route.path里没找到时就==1
+        return this.$route.path.indexOf(this.path) !== -1;
       },
       activeStyle() {
         return this.isActive ? {color: this.activeColor} : {}
