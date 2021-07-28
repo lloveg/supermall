@@ -61,7 +61,8 @@
         isShowBackTop: false,
         tabOffsetTop: 0,
         isTabFixed: false,
-        saveY: 0
+        saveY: 0,
+        itemImgListener: null
       }
     },
     computed: {
@@ -79,8 +80,12 @@
     },
     deactivated() {
       // console.log('deactivated');
+      // 1.保存Y值
       this.saveY = this.$refs.scroll.getScrollY()
       console.log(this.saveY);
+
+      // 2.取消全局事件监听
+      this.$bus.$off('itemImgLoad', this.itemImgListener)
     },
     created() {
       // 1.请求多个数据
@@ -105,9 +110,22 @@
       // 1.图片加载完成的事件监听
       const refresh  = debounce(this.$refs.scroll.refresh, 200)
       // 3.监听item中图片加载完成
-      this.$bus.$on('itemImageLoad', () => {
-        // console.log('------');
-        // this.$refs.scroll.refresh()
+      // this.$bus.$on('itemImageLoad', () => {
+      //   // console.log('------');
+      //   // this.$refs.scroll.refresh()
+      //   refresh()
+      // })
+
+      // 对监听的事件进行保存
+      // this.itemImgListener = () => {
+      //   refresh()
+      // }
+      // this.$bus.$on('itemImageLoad', this.itemImgListener)
+      // this.$bus.$on('itemImageLoad', () => {
+      //   refresh()
+      // })
+
+      this.$bus.$on('homeItemImgLoad', () => {
         refresh()
       })
 
@@ -157,7 +175,7 @@
       swiperImageLoad() {
         // console.log(this.$refs.tabControl.$el.offsetTop);
         this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
-        console.log(this.tabOffsetTop);
+        // console.log(this.tabOffsetTop);
       },
 
       /**
