@@ -32,6 +32,7 @@
 
   import {getHomeMultidata, getHomeGoods} from "network/home";
   import { debounce } from "common/utils";
+  import {BACKTOP_DISTANCE} from "common/const";
   // import Swiper from "components/common/swiper/Swiper";
   // import SwiperItem from "components/common/swiper/SwiperItem";
 
@@ -82,7 +83,7 @@
       // console.log('deactivated');
       // 1.保存Y值
       this.saveY = this.$refs.scroll.getScrollY()
-      console.log(this.saveY);
+      // console.log(this.saveY);
 
       // 2.取消全局事件监听
       this.$bus.$off('itemImgLoad', this.itemImgListener)
@@ -163,7 +164,7 @@
       contentScroll(position) {
         // console.log(position);
         // 1.判断BackTop是否显示
-        this.isShowBackTop = (-position.y) > 1000
+        this.isShowBackTop = (-position.y) > BACKTOP_DISTANCE
 
         // 2.决定tabControl是否吸顶(position: fixed)
         this.isTabFixed = (-position.y) > this.tabOffsetTop
