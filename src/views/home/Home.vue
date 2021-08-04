@@ -213,6 +213,7 @@
   .home-nav {
     background-color: var(--color-tint);
     color: #fff;
+    font-weight: 700;
 
     /* 在使用浏览器原生滚动时，为了让导航不跟随一起滚动 */
     /* position: fixed;

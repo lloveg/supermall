@@ -2,9 +2,7 @@
   <div class="cart">
     <!-- <nav-bar class="nav-bar"><div slot="center">购物车({{cartLength}})</div></nav-bar> -->
     <!-- 导航 -->
-    <nav-bar class="nav-bar">
-      <div slot="center">购物车({{length}})</div>
-    </nav-bar>
+    <nav-bar class="nav-bar"><div slot="center">购物车({{length}})</div></nav-bar>
     <!-- 商品的列表 -->
     <cart-list/>
     <!-- 底部汇总 -->
@@ -51,5 +49,6 @@
   .nav-bar {
     background-color: var(--color-tint);
     color: #fff;
+    font-weight: 700;
   }
 </style>
